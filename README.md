@@ -1,5 +1,14 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bcgov/pims/issues)
+![API (.Net Core)](<https://github.com/bcgov/PSP/workflows/API%20(.NET%20Core)/badge.svg?branch=dev>)
+[![codecov](https://codecov.io/gh/bcgov/PSP/branch/dev/graph/badge.svg)](https://codecov.io/gh/bcgov/PSP)
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m784832378-1d844c019bc2900c17c826cb)
+[![img](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 
-# Overview of Data Masking
+# Data Masker
+Data Masking Utility Tool .Net 5
+
+# Introduction
 
 If you've ever needed to pull down databases from a live environment to stage or even dev you'll need to think about masking any personal and business-sensitive information. Enterprises run the risk of breaching sensitive information when sharing data to the public or copying production data into non-production environments for the purposes of application development, testing, or data analysis. This tool was designed to help reduce this risk by irreversibly replacing the original sensitive data with fictitious data so that production data can be shared safely with non-production users.
 
