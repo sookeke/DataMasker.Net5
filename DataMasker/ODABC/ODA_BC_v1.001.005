@@ -1,0 +1,2 @@
+latitude,longitude,source_id,id,group_id,street_no,street,str_name,str_type,str_dir,unit,city,postal_code,full_addr,city_pcs,str_name_pcs,str_type_pcs,str_dir_pcs,csduid,csdname,pruid,provider
+49.04635,-122.40941,,0caff6b4dd06937da96d,6983051,29403,SIMPSON RD,,,,,,,29403 SIMPSON RD,ABBOTSFORD,SIMPSON,RD,,5909052,Abbotsford,59,City of Abbotsford

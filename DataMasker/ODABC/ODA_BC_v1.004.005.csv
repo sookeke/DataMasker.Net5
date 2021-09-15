@@ -1,0 +1,2 @@
+latitude,longitude,source_id,id,group_id,street_no,street,str_name,str_type,str_dir,unit,city,postal_code,full_addr,city_pcs,str_name_pcs,str_type_pcs,str_dir_pcs,csduid,csdname,pruid,provider
+49.25762,-122.84601,,1fef3b3a4bf5d37302d4,7302233,667,Poirier St,Poirier,St,,,,V3J 7M5,667 Poirier St,COQUITLAM,POIRIER,ST,,5915034,Coquitlam,59,Coquitlam

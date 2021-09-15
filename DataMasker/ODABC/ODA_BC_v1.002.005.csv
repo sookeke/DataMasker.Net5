@@ -1,0 +1,2 @@
+latitude,longitude,source_id,id,group_id,street_no,street,str_name,str_type,str_dir,unit,city,postal_code,full_addr,city_pcs,str_name_pcs,str_type_pcs,str_dir_pcs,csduid,csdname,pruid,provider
+49.25715,-123.09525,7942451,1319c2b054e15d1647b7,7201170,440,E 15TH AV,,,,,,,440 E 15TH AV,VANCOUVER,15,AV,E,5915022,Vancouver,59,Vancouver

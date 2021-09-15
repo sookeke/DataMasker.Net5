@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataMasker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DataMasker_GetUserInfo_GetUserInfo" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://sand-pims-proxied.th.gov.bc.ca/idir_GetUsersInfo/GetUserInfo.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

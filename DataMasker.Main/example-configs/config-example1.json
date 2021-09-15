@@ -1,0 +1,182 @@
+﻿{
+  "dataSource": {
+    "type": "SqlServer",
+    "config": {
+      "connectionString": "Data Source=localhost\\sqlexpress;Initial Catalog=sysdb;Integrated Security=SSPI;",
+
+    }
+  },
+  "dataGeneration": {
+    "locale": "en"
+  },
+  "tables": [
+    {
+      "name": "t_fileSub",
+      "primaryKeyColumn": "FileSubLookup_Id",
+      "columns": [
+        {
+          "name": "PID",
+          "type": "RandomInt",
+          "min": 1000000,
+          "max": 9000000,
+          "retainNullValues": true
+        },
+        {
+          "name": "Legal_Description",
+          "type": "Rant",
+          "stringFormatPattern": "Description",
+          "retainNullValues": true
+        },
+        {
+          "name": "Legal_Ownership",
+          "type": "Bogus",
+          "stringFormatpattern": "{{COMPANY.COMPANYNAME}}",
+          "retainNullValues": true
+
+
+        },
+        {
+          "name": "Property_Acquisition_Notes",
+          "type": "Rant",
+          "stringFormatPattern": "Property",
+          "retainNullValues": true
+        },
+        {
+          "name": "Book_Value",
+          "min": 100,
+          "max": 400,
+          "type": "RandomDec",
+          "retainNullValues": true
+        },
+        {
+          "name": "Additional_Info",
+          "type": "Rant",
+          "stringFormatPattern": "Information",
+          "retainNullValues": true
+        },
+        {
+          "name": "Title_Document_Number",
+          "type": "RandomString2",
+
+          "stringFormatPattern": "BK309056",
+          "max": 8,
+          "retainNullValues": true
+        },
+        {
+          "name": "Road_Property",
+          "type": "PickRandom",
+          "retainNullValues": true,
+          "stringFormatPattern": "Yes, NO"
+
+        }
+      ]
+    },
+    {
+      "name": "t_leasing",
+      "primaryKeyColumn": "FileSubLookup_Id",
+      "columns": [
+        {
+          "name": "Tenant_Full_Name",
+          "type": "CompanyPersonName",
+          "useGenderColumn": "Gender",
+          "retainNullValues": true
+
+        },
+        {
+          "name": "Property_Mgmt_Company",
+          "type": "Company",
+          "StringFormatPattern": "{{name.lastname}} {{company.companysuffix}}",
+          "retainNullValues": true
+
+
+
+
+        },
+        {
+          "name": "PM_Contact_Full_Name",
+          "type": "Bogus",
+          "useGenderColumn": "Gender",
+          "stringFormatPattern": "{{name.firstName}} {{name.lastName}}",
+          "retainNullValues": true
+
+
+
+        },
+        {
+          "name": "PM_Contact_Phone",
+          "type": "PhoneNumber",
+          "retainNullValues": true,
+          "stringFormatPattern": "(604)-###-####"
+
+
+        }
+      ]
+
+
+
+    },
+    {
+      "name": "t_marketing",
+      "primaryKeyColumn": "FileSubLookup_Id",
+      "columns": [
+        {
+          "name": "Contact_Full_Name",
+          "type": "Bogus",
+          "useGenderColumn": "Gender",
+          "stringFormatPattern": "{{name.firstName}} {{name.lastName}}",
+          "retainNullValues": true
+
+        },
+        {
+          "name": "Appraisal_Value",
+          "type": "RandomDec",
+          "retainNullValues": true,
+          "min": 0,
+          "max": 2000000
+
+        },
+        {
+          "name": "Offer_Price",
+          "type": "RandomDec",
+          "retainNullValues": true,
+          "min": 0,
+          "max": 1000000
+        },
+        {
+          "name": "Sale_Price",
+          "type": "RandomDec",
+          "retainNullValues": true,
+          "min": 0,
+          "max": 900000
+
+        },
+        {
+          "name": "Sale_Date",
+          "type": "DateOfBirth",
+          "retainNullValues": true,
+          "min": "2014-01-01",
+          "max": "2018-12-30"
+
+        },
+        {
+          "name": "Projected_Sale_Price",
+          "type": "RandomDec",
+          "retainNullValues": true,
+          "min": 0,
+          "max": 400000
+
+        },
+        {
+          "name": "Additional_Info",
+          "type": "Rant",
+          "stringFormatPattern": "Information",
+          "retainNullValues": true
+
+        }
+      ]
+
+
+
+    }
+  ]
+}

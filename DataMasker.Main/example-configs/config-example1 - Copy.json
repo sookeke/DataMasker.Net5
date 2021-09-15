@@ -1,0 +1,39 @@
+﻿{
+  "dataSource": {
+    "type": "OracleServer", //if dataSource type is OracleServer, all table names and columns must be upercase
+    "config": {
+      "connectionString": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ND057487.idir.bcgov)(PORT=1521))(CONNECT_DATA=(SID=xe)));User id=SYSTEM; Password =5D16Stod;"
+    }
+  },
+  "dataGeneration": {
+    "locale": "en"
+  },
+  "tables": [
+    {
+      "name": "APP_GWP.TEST_BLOB",
+      "primaryKeyColumn": "ID",
+      "columns": [
+        {
+          "name": "NAME",
+          "type": "Bogus", //pickrandom string pattern should not contain {{}}
+          "stringFormatPattern": "{{NAME.FULLNAME}}"
+
+        },
+        {
+          "name": "IMAGE",
+          "type": "Blob", //pickrandom string pattern should not contain {{}}
+          //"stringFormatPattern": "{{NAME.FULLNAME}}",
+          "retainNullValues": false
+
+        },
+        {
+          "name": "STRMAX",
+          "type": "Clob", //pickrandom string pattern should not contain {{}}
+          //"stringFormatPattern": "{{NAME.FULLNAME}}",
+          "retainNullValues": false
+
+        }
+      ]
+    }
+  ]
+}
