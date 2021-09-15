@@ -4,8 +4,8 @@
     "config": {
       "connectionString": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = *****)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=***)));User id=***; Password =***;",
       "connectionStringPrd": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = *****)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=****)));User id=***; Password =****;",
-      "Databasename": "PAIMS",
-      "Hostname": "kangaroo.th.gov.bc.ca"
+      "Databasename": "***",
+      "Hostname": "***"
     }
   },
   "dataGeneration": {
