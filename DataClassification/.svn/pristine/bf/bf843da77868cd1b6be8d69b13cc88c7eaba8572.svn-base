@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" />
+    </startup>
+  <appSettings>
+    <add key="DatabaseName" value="APP_PAM"/>
+    <add key="DataSourceType" value="OracleServer"/>
+    <!--insert SqlServer-->
+    <add key="ConnectionString" value="Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=chaser1.th.gov.bc.ca)(PORT=20204))(CONNECT_DATA=(SID=PRDAA)));User id=sookeke;Password=spring19;"/>
+
+  </appSettings>
+</configuration>

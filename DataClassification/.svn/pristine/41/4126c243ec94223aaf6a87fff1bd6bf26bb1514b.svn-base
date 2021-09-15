@@ -1,0 +1,339 @@
+﻿using ClosedXML.Excel;
+using Oracle.DataAccess.Client;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace ViewBLOB
+{
+    class Program
+    {
+        //private static DataTable dataTable;
+
+        static void Main(string[] args)
+        {
+            string connectionString = ConfigurationManager.AppSettings["connectionString"];
+            string datasource = ConfigurationManager.AppSettings["DataSourceType"];
+            string scriptPath = ConfigurationManager.AppSettings["SqlPath"];
+            DataTable getdata = new DataTable();
+            DataTable data = GetdataTable(connectionString, datasource, scriptPath);
+            var tablename = data.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("table_name")).ToList();
+            var columnList = data.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("column_name")).ToList();
+            getdata.Merge(data);
+            data.Columns.Add("Min");
+            data.Columns.Add("max");
+
+            foreach (DataColumn columns in data.Columns)
+            {
+                foreach (DataRow rows in data.Rows)
+                {
+                    if (rows["data_type"].ToString().Contains("DATE") || rows["data_type"].ToString().Contains("date"))
+                    {
+                        string tname = rows["table_name"].ToString();
+                        string colname = rows["column_name"].ToString();
+                        DataTable dtMinMax = new DataTable();
+                        dtMinMax  = GetMinMax(rows["table_name"].ToString(), rows["column_name"].ToString(),connectionString,datasource);
+                        if (dtMinMax != null && dtMinMax.Rows.Count > 0)
+                        {
+                            var min = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<DateTime?>("Min")).ToList()[0];
+                            var max = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<DateTime?>("Max")).ToList()[0];
+                            rows["Min"] = min;
+                            rows["Max"] = max;
+                            data.AcceptChanges();
+                        }
+                       
+                    }
+                    else if (rows["data_type"].ToString().Contains("NUMBER") || rows["data_type"].ToString().Contains("money"))
+                    {
+                        string tname = rows["table_name"].ToString();
+                        string colname = rows["column_name"].ToString();
+                        DataTable dtMinMax = new DataTable();
+                        dtMinMax = GetMinMax(rows["table_name"].ToString(), rows["column_name"].ToString(), connectionString, datasource);
+                        if (dtMinMax != null && dtMinMax.Rows.Count > 0)
+                        {
+                            var min = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<decimal?>("MIN")).ToList()[0];
+                            var max = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<decimal?>("MAX")).ToList()[0];
+                            rows["Min"] = min;
+                            rows["Max"] = max;
+                            data.AcceptChanges();
+                        }
+                     
+                    }
+                    else if (rows["data_type"].ToString().Equals("int"))
+                    {
+                        string tname = rows["table_name"].ToString();
+                        string colname = rows["column_name"].ToString();
+                        DataTable dtMinMax = new DataTable();
+                        dtMinMax = GetMinMax(rows["table_name"].ToString(), rows["column_name"].ToString(), connectionString, datasource);
+                        if (dtMinMax != null && dtMinMax.Rows.Count > 0)
+                        {
+                            var min = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<int?>("MIN")).ToList()[0];
+                            var max = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<int?>("MAX")).ToList()[0];
+                            rows["Min"] = min;
+                            rows["Max"] = max;
+                            data.AcceptChanges();
+                        }
+
+                    }
+                    else if (rows["data_type"].ToString().Contains("VARCHAR2") || rows["data_type"].ToString().Contains("varchar"))
+                    {
+                        string tname = rows["table_name"].ToString();
+                        string colname = rows["column_name"].ToString();
+                        DataTable dtMinMax = new DataTable();
+                        dtMinMax = GetMinMax(rows["table_name"].ToString(), rows["column_name"].ToString(), connectionString, datasource);
+                        if (dtMinMax != null && dtMinMax.Rows.Count > 0)
+                        {
+                            //var min = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<decimal?>("MIN")).ToList()[0];
+                            var MaxNvarchar = dtMinMax.Rows.OfType<DataRow>().Select(dr => dr.Field<int?>("MaxNvarchar")).ToList()[0];
+                            //rows["Min"] = min;
+                            rows["Max"] = MaxNvarchar;
+                            data.AcceptChanges();
+                        }
+                        
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+            }
+
+            //write to excel
+            XLWorkbook wb = new XLWorkbook();
+            //wb.Worksheets.Add()
+
+            //write to csv
+            if (data.Rows != null)
+            {
+                writeTofile(data, "APP_LIS");
+                //exportToExcel(data, "APP_GWP");
+            }
+
+        }
+        private static void exportToExcel(DataTable dt,string directory)
+        {
+
+            /*Set up work book, work sheets, and excel application*/
+            Microsoft.Office.Interop.Excel.Application oexcel = new Microsoft.Office.Interop.Excel.Application();
+            try
+            {
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                object misValue = System.Reflection.Missing.Value;
+                Microsoft.Office.Interop.Excel.Workbook obook = oexcel.Workbooks.Add(misValue);
+                Microsoft.Office.Interop.Excel.Worksheet osheet = new Microsoft.Office.Interop.Excel.Worksheet();
+
+
+                //  obook.Worksheets.Add(misValue);
+
+                osheet = (Microsoft.Office.Interop.Excel.Worksheet)obook.Sheets["Sheet1"];
+                int colIndex = 0;
+                int rowIndex = 1;
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    colIndex++;
+                    osheet.Cells[1, colIndex] = dc.ColumnName;
+                }
+                foreach (DataRow dr in dt.Rows)
+                {
+                    rowIndex++;
+                    colIndex = 0;
+
+                    foreach (DataColumn dc in dt.Columns)
+                    {
+                        colIndex++;
+                        osheet.Cells[rowIndex, colIndex] = dr[dc.ColumnName];
+                    }
+                }
+
+                osheet.Columns.AutoFit();
+                //string filepath = "C:\\Temp\\Book1";
+
+                //Release and terminate excel
+
+                obook.SaveAs(directory + @"\" + directory);
+                obook.Close();
+                oexcel.Quit();
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        private static void writeTofile(DataTable textTable, string directory)
+        {
+            StringBuilder fileContent = new StringBuilder();
+            //int i = 0;
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            if (textTable.Columns.Count == 0)
+            {
+                return;
+            }
+            foreach (var col in textTable.Columns)
+            {
+                fileContent.Append(col.ToString() + ",");
+            }
+
+            fileContent.Replace(",", System.Environment.NewLine, fileContent.Length - 1, 1);
+
+            foreach (DataRow dr in textTable.Rows)
+            {
+                foreach (var column in dr.ItemArray)
+                {
+                    fileContent.Append("\"" + column.ToString() + "\",");
+                }
+
+                fileContent.Replace(",", System.Environment.NewLine, fileContent.Length - 1, 1);
+            }
+
+            System.IO.File.WriteAllText(directory + @"\" + directory + ".csv", fileContent.ToString());
+
+        }
+        private static DataTable GetdataTable(string connectionString1,string datasource, string scriptpath)
+        {
+            DataTable dataTable = new DataTable();
+            if (datasource == "OracleServer")
+            {
+                using (OracleConnection oracleConnection = new OracleConnection(connectionString1))
+                {
+                    string squery = File.ReadAllText(scriptpath);
+                    //System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(squery, @"^\s*GO\s*$",
+                    //RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    oracleConnection.Open();
+                    using (OracleDataAdapter oda = new OracleDataAdapter(squery, oracleConnection))
+                    {
+                        try
+                        {
+                            //Fill the data table with select statement's query results:
+                            int recordsAffectedSubscriber = 0;
+
+                            recordsAffectedSubscriber = oda.Fill(dataTable);
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+
+                    return dataTable;
+
+                }
+            }
+            else if (datasource == "SqlServer")
+            {
+                using (SqlConnection oracleConnection = new SqlConnection(connectionString1))
+                {
+                    string squery = File.ReadAllText(scriptpath);
+                    //System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(squery, @"^\s*GO\s*$",
+                    //RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    oracleConnection.Open();
+                    using (SqlDataAdapter oda = new SqlDataAdapter(squery, oracleConnection))
+                    {
+                        try
+                        {
+                            //Fill the data table with select statement's query results:
+                            int recordsAffectedSubscriber = 0;
+
+                            recordsAffectedSubscriber = oda.Fill(dataTable);
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+
+                    return dataTable;
+
+                }
+            }
+            else
+                return null;
+
+        }
+        private static DataTable GetMinMax(string table, string column, string connectionString1,string DataSource)
+        {
+            DataTable dataTable = new DataTable();
+            if (DataSource == "OracleServer")
+            {
+                using (OracleConnection oracleConnection = new OracleConnection(connectionString1))
+                {
+                    string squery = "Select Min(" + column + ") as Min, Max(" + column + ") as Max, Max(Length(" + column + ")) as MaxNvarchar  from " + table;
+                    //System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(squery, @"^\s*GO\s*$",
+                    //RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    oracleConnection.Open();
+                    using (OracleDataAdapter oda = new OracleDataAdapter(squery, oracleConnection))
+                    {
+                        try
+                        {
+                            //Fill the data table with select statement's query results:
+                            int recordsAffectedSubscriber = 0;
+
+                            recordsAffectedSubscriber = oda.Fill(dataTable);
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                    //int FileSize = 0;
+                    return dataTable;
+                }
+            }
+            else if (DataSource == "SqlServer")
+            {
+                using (SqlConnection oracleConnection = new SqlConnection(connectionString1))
+                {
+                    string squery = "Select Min(" + column + ") as Min, Max(" + column + ") as Max, Max(Len(" + column + ")) as MaxNvarchar  from " + table;
+                    //System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(squery, @"^\s*GO\s*$",
+                    //RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+                    oracleConnection.Open();
+                    using (SqlDataAdapter oda = new SqlDataAdapter(squery, oracleConnection))
+                    {
+                        try
+                        {
+                            //Fill the data table with select statement's query results:
+                            int recordsAffectedSubscriber = 0;
+
+                            recordsAffectedSubscriber = oda.Fill(dataTable);
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                    //int FileSize = 0;
+                    return dataTable;
+                }
+            }
+            else
+            {
+                return null;
+            }
+           
+        }
+    }
+}

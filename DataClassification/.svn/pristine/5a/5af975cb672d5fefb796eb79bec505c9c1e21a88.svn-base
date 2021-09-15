@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" />
+    </startup>
+  <appSettings>
+    <add key="DatabaseName" value="APP_PAM"/>
+    <add key="DataSourceType" value="SqlServer"/> <!--SqlServer or OracleServer-->
+    <add key="SqlPath" value="C:\Users\sookeke\Tab_ColumnsSQL.sql"/>
+    <add key="OutputFilename" value="APP_LIS"/>
+    <!--SqlServer or OracleServer-->
+    <!--insert SqlServer-->
+   <!--<add key="ConnectionString" value="Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=chaser1.th.gov.bc.ca)(PORT=20204))(CONNECT_DATA=(SID=PRDAA)));User id=sookeke;Password=****;"/>--> <!--for oracle-->
+    <add key="ConnectionString" value="Data Source=sql.th.gov.bc.ca; Initial Catalog=LIS_Prd;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"/> <!--for sqlserver-->
+  </appSettings>
+</configuration>
