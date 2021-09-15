@@ -2,5 +2,5 @@ bin
 Release
 obj
 packages
-vs
+.vs
 .svn
