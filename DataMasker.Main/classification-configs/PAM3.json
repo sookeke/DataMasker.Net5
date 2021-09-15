@@ -2,8 +2,8 @@
   "dataSource": {
     "type": "OracleServer",
     "config": {
-      "connectionString": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = kangaroo.th.gov.bc.ca)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=DBA05)));User id=APP_PAM_MASKED; Password =fishp00l;",
-      "connectionStringPrd": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = kangaroo.th.gov.bc.ca)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=DBA05)));User id=APP_PAM_MASKED; Password =fishp00l;",
+      "connectionString": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = *****)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=***)));User id=***; Password =***;",
+      "connectionStringPrd": "Data Source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = *****)(PORT = 20208))(CONNECT_DATA = (SERVICE_NAME=****)));User id=***; Password =****;",
       "Databasename": "PAIMS",
       "Hostname": "kangaroo.th.gov.bc.ca"
     }
