@@ -22,7 +22,7 @@
     <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="SharpCompress" Version="0.28.3" />
+    <PackageReference Include="SharpCompress" Version="0.29.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.DirectoryServices" Version="5.0.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="5.0.0" />
