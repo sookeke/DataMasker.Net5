@@ -49,3 +49,154 @@ Another problem can happen if your extracted data set originates in more than on
 ###     Primary key as Sensitive
 
 Data masking that is part of a primary key can be a huge challenge to the entire integrity of the database. If you attempt to alter the data in a column that participates in a PRIMARY KEY, then you'll likely destroy the referential integrity of the database. To do this effectively, using a substitution strategy in a database, you will need to create a correlation table, which contains copies of the before- and after- values of the column to be masked. The correlation table is then used to relate the masked, or substituted, key values to the original ones, making sure that the new values are unique.
+
+
+<div>
+   <div style="text-align: center;">&#160;</div>&#160;</div>
+<div align="center">
+   <table class="ms-rteTable-4" cellspacing="0" style="width: 80%; text-align: center;">
+      <tbody>
+         <tr class="ms-rteTableEvenRow-4">
+            <td class="ms-rteTableEvenCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></div>
+               <div> 
+                  <span>&#160; 
+                     <i class="fa fa-file-code"></i></span></div>
+               <div> 
+                  <span> </span>
+                  <h2> 
+                     <a href="https://github.com/sookeke/DataMasker.Net5/wiki">DevOps</a><br/></h2>
+               </div>
+               <p style="text-align: center;">
+                  <span aria-hidden="true">Git, Git Action,&#160;SVN, Jenkins, JIRA<br/></span></p>
+            </td>
+            <td class="ms-rteTableOddCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></div>
+               <div> 
+                  <span>
+                     <i class="fa fa-drafting-compass"></i></span>&#160;</div>
+               <div> 
+                  <span> </span>
+                  <h2>
+                     <a href="https://github.com/sookeke/DataMasker.Net5/wiki/Data-Classification">Data Classification</a></h2>
+               </div>
+               <div style="text-align: center;"> 
+                  <span><span> </span></span>
+                  <p>
+                     <span aria-hidden="true"><span aria-hidden="true"></span>BA, SME, SA, OCIO Compliance by Zone (A, B, C)<span aria-hidden="true"><br/></span></span></p>
+               </div>
+            </td>
+            <td class="ms-rteTableEvenCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </span>
+                  <div>
+                     <span><i class="fa fa-sync"></i></span> &#160;</div>
+                  <span></span>
+                  <div> 
+                     <span> </span>
+                     <h2> 
+                        <a href="/guidelines/data_masking/SitePages/Data%20Masking%20Lifecycle.aspx">Data Masking Lifecycl</a>e<br/></h2>
+                     <div style="text-align: center;"> 
+                        <span><span> </span></span>
+                        <p>
+                           <span aria-hidden="true"><span aria-hidden="true"></span>Data Generation, Data Masking, Applied Masking, Scrambling<br/></span></p>
+                        <span> </span>
+                        <p> 
+                           <span aria-hidden="true">
+                              <span aria-hidden="true">
+                                 <br/></span></span></p>
+                     </div>
+                  </div>
+               </div>
+            </td>
+         </tr>
+      </tbody>
+   </table> 
+   <br/> 
+</div>
+<div>
+   <div style="text-align: center;">&#160;</div>&#160;</div>
+<div align="center">
+   <table class="ms-rteTable-4" cellspacing="0" style="width: 80%; text-align: center;">
+      <tbody>
+         <tr class="ms-rteTableEvenRow-4">
+            <td class="ms-rteTableEvenCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></div>
+               <div> 
+                  <span>&#160; 
+                     <i class="fa fa-check"></i></span></div>
+               <div> 
+                  <span> </span>
+                  <h2> 
+                     <a href="https://github.com/sookeke/DataMasker.Net5/wiki/Validation-Check">Validation Check</a></h2>
+               </div>
+               <p style="text-align: center;">
+                  <span aria-hidden="true">Data Validation, Email Delivery</span></p>
+            </td>
+            <td class="ms-rteTableOddCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></div>
+               <div> 
+                  <span>
+                     <i class="fa fa-server"></i></span>&#160;</div>
+               <div> 
+                  <span> </span>
+                  <h2>
+                     <a href="https://github.com/sookeke/DataMasker.Net5/wiki/Solution-Architecture">Solution Architecture</a><br/></h2>
+               </div>
+               <div style="text-align: center;"> 
+                  <span><span> </span></span>
+                  <p>
+                     <span aria-hidden="true"><span aria-hidden="true"></span>Repository Pattern, Data Mapper<br/></span></p>
+                  <span> </span>
+                  <p> 
+                     <span aria-hidden="true">
+                        <span aria-hidden="true">
+                           <br/></span></span></p>
+               </div>
+            </td>
+            <td class="ms-rteTableEvenCol-4" rowspan="1" colspan="1" style="width: 33.33%;">
+               <div> 
+                  <span> &#160;&#160;&#160; &#160;</span>
+                  <div style="text-align: center;">&#160;&#160;<span class="fa fa-file-code"></span></div>
+                  <div style="text-align: center;">
+                     <h2>
+                        <a href="/guidelines/data_masking/SitePages/Configuration.aspx">Configuration</a><br/></h2>
+                  </div>
+                  <p style="text-align: center;">
+                     <span aria-hidden="true">Git,&#160;SVN, Jenkins, JIRA</span></p>
+                  <span> &#160; &#160; &#160; &#160; &#160; &#160;</span>
+                  <div>
+                     <div style="text-align: center;">
+                     </div>
+                  </div>
+               </div>
+            </td>
+         </tr>
+      </tbody>
+   </table> 
+   <br/> 
+</div>
+<div>
+   <br/>
+</div>
+<div>
+   <br/>
+</div>
+<div>
+   <div class="ms-rtestate-read ms-rte-wpbox" contenteditable="false">
+      <div class="ms-rtestate-notify  ms-rtestate-read 1c07bf2e-2426-4bb4-bc59-0d097567bca5" id="div_1c07bf2e-2426-4bb4-bc59-0d097567bca5">
+      </div>
+      <div id="vid_1c07bf2e-2426-4bb4-bc59-0d097567bca5" style="display: none;">
+      </div>
+   </div>
+   <br/>
+</div> 
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
