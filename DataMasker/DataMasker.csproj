@@ -42,7 +42,7 @@
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="MsgKit" Version="2.4.3" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Npgsql" Version="5.0.7" />
     <PackageReference Include="OfficeOpenXml.Core.ExcelPackage" Version="1.0.0" />
     <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6">

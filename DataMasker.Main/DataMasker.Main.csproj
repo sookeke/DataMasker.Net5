@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="ChoETL" Version="1.2.1.21" />
     <PackageReference Include="CompareNETObjects" Version="4.73.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
     <PackageReference Include="OfficeOpenXml.Core.ExcelPackage" Version="1.0.0" />
     <PackageReference Include="OfficeOpenXml.Extends" Version="1.0.6">
